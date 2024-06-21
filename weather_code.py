@@ -103,28 +103,28 @@ class WeatherApp(QWidget):
         low = round(data['main']['temp_min'])
 
         weather_info = (
-            f"The weather in {location.title()} is {temperature}° C with {description}.\n\n"
-            f"It feels like {feels_like}° C.\n\n"
-            f"Today's high is {high}° C and today's low is {low}° C.\n\n"
+            f"The weather in {location.title()} now is <b><span style='color:red;'>{temperature}° C</span></b> with {description}.<br><br>"
+            f"It feels like {feels_like}° C.<br><br>"
+            f"Today's high is {high}° C and today's low is {low}° C.<br><br>"
         )
 
         advice = ""
         
         icon_path = ""
         if 'rain' in description:
-            advice += "Take an umbrella with you.\n\n"
+            advice += "Take an umbrella with you.<br><br>"
             icon_path = 'rain.png'
         elif 'clear' in description:
-            advice += "Put on sunglasses.\n\n"
+            advice += "Put on sunglasses.<br><br>"
             icon_path = 'sun.png'
         elif 'cloud' in description:
-            advice += "It might be a bit gloomy.\n\n"
+            advice += "It might be a bit gloomy.<br><br>"
             icon_path = 'cloud.png'
         elif 'snow' in description:
-            advice += "Wear warm clothes.\n\n"
+            advice += "Wear warm clothes.<br><br>"
             icon_path = 'snow.png'
         elif 'thunderstorm' in description:
-            advice += "Stay indoors if possible.\n\n"
+            advice += "Stay indoors if possible.<br><br>"
             icon_path = 'thunderstorm.png'
         else:
             advice = "Check the weather carefully."
@@ -135,7 +135,7 @@ class WeatherApp(QWidget):
         else:
             self.icon_label.clear()
 
-        self.result_display.setText(weather_info + advice)
+        self.result_display.setHtml(weather_info + advice)
         self.display_random_fact()
 
     def display_random_fact(self):
